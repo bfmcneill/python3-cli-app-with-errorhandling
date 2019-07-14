@@ -3,8 +3,17 @@ from pprint import pprint as pp
 
 def main():    
     clear_stout()
-    print_menu()
-    
+    while True:
+        print_menu()
+        user_input = input("\nWhat option would you like to select? or (q)uit ::> ")
+        if user_input == 'q':
+            # Quit app
+            print("quitting")
+            return
+        else:
+            # app runs here
+            print('user selection >>> {}'.format(user_input))
+
 
 def print_menu():        
     """
@@ -24,12 +33,14 @@ def print_menu():
     row3 = {"row_num":3,"title":"KeyBoard Error"}
     db.append(row3)
    
-    print("Make a selection")    
+    print("Make a selection")  
+    print("-"*20)  
     for row in db:
         row_num = row.get('row_num')
         title = row.get('title')
         menu_option = "{} - {}".format(row_num,title)
         print(menu_option)
+    print()
 
 
 def clear_stout():
