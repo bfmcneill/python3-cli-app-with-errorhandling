@@ -12,9 +12,9 @@ def index_error():
 def key_error():
     """normally see this when working with dictionaries"""
     treasure_map = {'lat':34.23,'lon':102.3,'depth':2002}
-    print("treasure_map data-type={}".format(type(treasure_map)))
-    print(treasure_map.get('stree_value'))
-    print(treasure_map['street_value'])
+    print("treasure_map data-type={}".format(type(treasure_map))) # class=dictionary
+    print("street_value={}".format(treasure_map.get('street_value')))
+    print(treasure_map['street_value']) #error happens here
 
 def function_import_error():    
     from math import sqrt

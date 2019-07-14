@@ -6,7 +6,7 @@ import err
 
 def main():    
    
-    db = get_db_rows()
+    db = get_db_rows() # list of dictionaries
 
     while True:
         clear_stout()
@@ -20,10 +20,28 @@ def main():
             # app runs here
             if user_input.isdigit():
                 # this is where we want the user to get to
-                print("user input a digit")
-                print('user selection >>> {}'.format(user_input))
+                #print("user input a digit")
+                #print('user selection >>> {}'.format(user_input))
+                idx = int(user_input) - 1
+                
+                if idx > 0 and idx <= len(db):
+                    list_item = db[idx] # returns dictionary
+                    pyfunc = list_item.get('pyfunc')
+                    
+                    try:
+                        pyfunc()
+                    except Exception as e:
+                        print(e)
+
+                else:
+                    msg = "Pick a number between 1 and {}".format(len(db))
+                    print(msg)
+                    
+                
+
+
             else:
-                print("Please input numbers only")
+                print("Please input numbers greater than zero")
             
             
             input("Press any key to continue...")
