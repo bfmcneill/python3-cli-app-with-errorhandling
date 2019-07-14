@@ -9,13 +9,20 @@ def main():
         clear_stout()
         print_menu(db)
         user_input = input("\nWhat option would you like to select? or (q)uit ::> ")
-        if user_input == 'q':
+        if user_input.lower() == 'q':
             # Quit app
             print("quitting")
             return
         else:
             # app runs here
-            print('user selection >>> {}'.format(user_input))
+            if user_input.isdigit():
+                # this is where we want the user to get to
+                print("user input a digit")
+                print('user selection >>> {}'.format(user_input))
+            else:
+                print("Please input numbers only")
+            
+            
             input("Press any key to continue...")
 
 
