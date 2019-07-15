@@ -12,19 +12,20 @@ def main():
         clear_stout()
         print_menu(db)
         user_input = input("\nWhat option would you like to select? or (q)uit ::> ")
-        if user_input.lower().strip() == 'q':
+        user_input_adj = user_input.strip().lower()
+        if user_input_adj == 'q':
             # Quit app
             print("quitting")
             return
         else:
             # app runs here
-            if user_input.isdigit():
+            if user_input_adj.isdigit():
                 # this is where we want the user to get to
                 #print("user input a digit")
                 #print('user selection >>> {}'.format(user_input))
-                idx = int(user_input) - 1
+                idx = int(user_input_adj) - 1
                 
-                if idx > 0 and idx <= len(db):
+                if idx > -1 and idx <= len(db):
                     list_item = db[idx] # returns dictionary
                     pyfunc = list_item.get('pyfunc')
                     
@@ -32,14 +33,20 @@ def main():
                         pyfunc()
 
                     except ValueError as e:
-                        print("You made a value error!!")
-            
+                        print("You made a value error!!")            
+                        if not handled(e):
+                            return
 
                     except NameError as e:
                         print("You made a name error!!")
+                        if not handled(e):
+                            return
 
                     except Exception as e:
                         print("There was an error! ::> {}".format(e))
+                        if not handled(e):
+                            return
+
 
 
                 else:
@@ -50,10 +57,23 @@ def main():
                 print("Please input numbers greater than zero")
             
             
-            input("Press any key to continue...")
+            # input("Press any key to continue...")
 
 
+def handled(err):
+    # setup 
+    is_handled = False
+    error_type = type(err).__name__            
+    print(f"\n***{type(err)} ----- {error_type} >>> {err}\n")     
 
+    user_input = input("Press any key to continue or (q)uit: ")
+    if user_input.strip().lower() == 'q':        
+        is_handled = False
+    else:
+        is_handled = True
+
+
+    return is_handled
 
 
 def print_menu(db):        
