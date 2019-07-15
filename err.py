@@ -26,10 +26,10 @@ def function_import_error():
         
 def iterator_error():
     # setup
-    my_awesome_calculation=len(str(2**50000))
-    my_awesome_message='If you multiply 2 by itself 50,000 the number will have {} digits'
-    my_dogs_favorite_thing="carrot"
-    meaning_of_life=42
+    my_awesome_calculation = len(str(2**50000))
+    my_awesome_message = 'If you multiply 2 by itself 50,000 the number will have {} digits'
+    my_dogs_favorite_thing = "carrot"
+    meaning_of_life = 42
     my_awesome_iterable = [
         meaning_of_life,
         my_dogs_favorite_thing,
@@ -42,12 +42,12 @@ def iterator_error():
     print('The data type for my_awesome_iterable={}'.format(_type))
     
     _type = type(my_awesome_iterator)
-    print('The data type for my_awesome_iterable={}'.format(_type))
+    print('The data type for my_awesome_iterator={}'.format(_type))
 
     print(next(my_awesome_iterator)) #element0 - yes
     print(next(my_awesome_iterator)) #element1 - yes
     print(next(my_awesome_iterator)) #element2 - yes
-    print(next(my_awesome_iterator)) #element3 ???
+    print(next(my_awesome_iterator)) #element3 ???  # error occures here
 
 def type_error():    
     print(int('4' + 4))
@@ -67,12 +67,13 @@ def division_error():
     bad_math = glorious_numeric_value / 0 
 
 def keyboard_interrupt_error1():
-    """THIS WILL BREAK ON KEYBOARD INTERRUPT"""
+    """THIS WILL NOT BREAK ON KEYBOARD INTERRUPT"""
+    message = {'w':'thats becuase winners never quit','q':'quiters never win'}
     try:
         while True:
-            user_choice = input('Are you a (w)inner or a (q)uiter? --> ')   
-            message = {'w':'thats becuase winners never quit','q':'quiters never win'}
-            if user_choice[0].lower() in message.keys():
+            user_choice = input('Are you a (w)inner or a (q)uiter? --> ')               
+            user_choice_adj = user_choice.strip()
+            if user_choice_adj[0].lower() in message.keys():
                 print(message.get(user_choice))
                 if user_choice[0].lower() == 'q':                    
                     time.sleep(1.2)
@@ -93,7 +94,7 @@ def keyboard_interrupt_error2():
     message = "Press Ctrl+C to quit"
     try:
         while True:
-            i+=1
+            i += 1
             print(i, message)
             time.sleep(1)
     except KeyboardInterrupt:
