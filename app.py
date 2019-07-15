@@ -12,7 +12,7 @@ def main():
         clear_stout()
         print_menu(db)
         user_input = input("\nWhat option would you like to select? or (q)uit ::> ")
-        if user_input.lower() == 'q':
+        if user_input.lower().strip() == 'q':
             # Quit app
             print("quitting")
             return
@@ -30,21 +30,29 @@ def main():
                     
                     try:
                         pyfunc()
+
+                    except ValueError as e:
+                        print("You made a value error!!")
+            
+
+                    except NameError as e:
+                        print("You made a name error!!")
+
                     except Exception as e:
-                        print(e)
+                        print("There was an error! ::> {}".format(e))
+
 
                 else:
                     msg = "Pick a number between 1 and {}".format(len(db))
                     print(msg)
-                    
-                
-
 
             else:
                 print("Please input numbers greater than zero")
             
             
             input("Press any key to continue...")
+
+
 
 
 
